@@ -50,21 +50,25 @@ games_db = [
 ]
 
 @app.get("/games")
-def get_games():
-    return games_db
+def get_games(company: str | None = None):
+
+    if company is None:
+        return games_db
+
+    matching_games = []
+
+    for game in games_db:
+        if game["company"] == company:
+            matching_games.append(game)
+
+    if not matching_games:
+        raise HTTPException(status_code=404, detail="Game not found")
+
+    return matching_games
 
 @app.get("/games/{game_id}")
 def get_game(game_id: int):
     for game in games_db:
         if game["id"] == game_id:
             return game
-        else:
-            raise HTTPException(
-                status_code=404,
-                detail="Game not found"
-            )
-
-'''
-@app.get("/games")
-def get_games(genre: str | None = None):
-'''
+    raise HTTPException(status_code=404, detail="Game not found")
