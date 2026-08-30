@@ -153,4 +153,4 @@ def delete_game(game_id: int):
             games_db.remove(existing_game)
             return existing_game
 
-    raise HTTPException(status_code=404, detail="Game not found")
+    raise HTTPException(status_code=404, detail=f"Game with ID {game_id} not found")
