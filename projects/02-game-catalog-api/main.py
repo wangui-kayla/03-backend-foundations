@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
 
 app = FastAPI()
 
@@ -49,7 +50,29 @@ games_db = [
     }
 ]
 
-@app.get("/games")
+class Game(BaseModel):
+    name: str
+    description: str
+    version: str
+    company: str
+    genre: str
+
+class GameResponse(BaseModel):
+    id: int
+    name: str
+    description: str
+    version: str
+    company: str
+    genre: str
+
+class GameUpdate(BaseModel):
+    name: str | None = None
+    description: str | None = None
+    version: str | None = None
+    company: str | None = None
+    genre: str | None = None
+
+@app.get("/games", response_model=list[GameResponse])
 def get_games(company: str | None = None):
 
     if company is None:
@@ -62,13 +85,72 @@ def get_games(company: str | None = None):
             matching_games.append(game)
 
     if not matching_games:
-        raise HTTPException(status_code=404, detail="Game not found")
+        return matching_games
 
-    return matching_games
-
-@app.get("/games/{game_id}")
+@app.get("/games/{game_id}", response_model=GameResponse)
 def get_game(game_id: int):
     for game in games_db:
         if game["id"] == game_id:
             return game
+    raise HTTPException(status_code=404, detail="Game not found")
+
+@app.post("/games", status_code=201, response_model=GameResponse)
+def create_game(game: Game):
+
+    new_id = len(games_db) + 1
+
+    new_game = {
+        "id": new_id,
+        "name": game.name,
+        "description": game.description,
+        "version": game.version,
+        "company": game.company,
+        "genre": game.genre,
+        "secret": "this should not be returned"
+    }
+
+    games_db.append(new_game)
+
+    return new_game
+
+@app.put("/games/{game_id}")
+def update_game(game_id: int, game: Game):
+    for existing_game in games_db:
+        if existing_game["id"] == game_id:
+            existing_game["name"] = game.name
+            existing_game["description"] = game.description
+            existing_game["version"] = game.version
+            existing_game["company"] = game.company
+            existing_game["genre"] = game.genre
+
+            return existing_game
+
+    raise HTTPException(status_code=404, detail="Game not found")
+
+@app.patch("/games/{game_id}")
+def update_game_section(game_id: int, game:GameUpdate):
+    for existing_game in games_db:
+        if existing_game["id"] == game_id:
+            if game.name is not None:
+                existing_game["name"] = game.name
+            if game.description is not None:
+                existing_game["description"] = game.description
+            if game.version is not None:
+                existing_game["version"] = game.version
+            if game.company is not None:
+                existing_game["company"] = game.company
+            if game.genre is not None:
+                existing_game["genre"] = game.genre
+
+            return existing_game
+
+    raise HTTPException(status_code=404, detail="Game not found")
+
+@app.delete("/games/{game_id}")
+def delete_game(game_id: int):
+    for existing_game in games_db:
+        if existing_game["id"] == game_id:
+            games_db.remove(existing_game)
+            return existing_game
+
     raise HTTPException(status_code=404, detail="Game not found")
