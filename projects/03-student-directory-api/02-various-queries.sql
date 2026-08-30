@@ -1,19 +1,45 @@
--- find student with ID 5
-SELECT * FROM students
-WHERE student_id = 5;
+-- show every student
+SELECT * FROM students;
 
--- change student 5's course to CS
+-- show only strudents enrolled in certain courses
+SELECT * FROM students
+WHERE student_course = 'Bachelor of Science in Computer Science';
+
+SELECT * FROM students
+WHERE student_course = 'Bachelor of Architecture';
+
+SELECT * FROM students
+WHERE student_course = 'Bachelor of Education (Arts)';
+
+-- show students older than 20 years
+SELECT * FROM students
+WHERE student_age > 20;
+
+-- show only enrolled students
+SELECT * FROM students
+WHERE enrollment_status;
+
+-- show only not enrolled students
+SELECT * FROM students
+WHERE NOT enrollment_status;
+
+-- show students from youngest to oldest
+SELECT * FROM students
+ORDER BY student_age ASC;
+
+-- show students from oldest to youngest who are enrolled
+SELECT * FROM students
+WHERE enrollment_status
+ORDER BY student_age DESC;
+
+-- change a student's course and verify the change
 UPDATE students
 SET student_course = 'Bachelor of Science in Computer Science'
-WHERE student_id = 5
+WHERE student_name = 'Joy Wambui'
 RETURNING *;
 
--- delete student whose ID is 10
+-- delete one student then show all
 DELETE FROM students
-WHERE student_id = 10
-RETURNING *;
+WHERE student_name = 'Brian Kiprop';
 
--- find students that are enrolled, older than 20 and are from oldest to youngest
-SELECT * FROM students
-WHERE enrollment_status AND student_age > 20
-ORDER BY student_age DESC;
+SELECT * FROM students;
