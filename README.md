@@ -1,9 +1,11 @@
 # ⚙️ Backend Foundations
 
-> **Building APIs. Understanding the backend. One project at a time.**
+> **Building APIs. Understanding backend systems. One project at a time.**
 
 ![Python](https://img.shields.io/badge/Python-Backend-blue?logo=python\&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-Backend-green?logo=fastapi\&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-blue?logo=postgresql\&logoColor=white)
+![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-ORM-red?logo=sqlalchemy\&logoColor=white)
 ![Status](https://img.shields.io/badge/Status-In%20Progress-yellow)
 ![Focus](https://img.shields.io/badge/Focus-Backend%20Development-purple)
 
@@ -11,57 +13,66 @@
 
 ## ⚙️ About This Repository
 
-This repository focuses on using **Python and FastAPI to explore the foundations of backend development**.
+This repository is my **backend learning laboratory**.
 
-The goal is to move beyond writing standalone programs and begin understanding how applications communicate, how APIs are designed, and how data is handled on the backend.
+I'm using Python and FastAPI to understand what happens behind the scenes when applications communicate, process data, interact with databases, and expose functionality through APIs.
 
-Rather than building one large application, this repository contains several smaller projects that explore different parts of backend development.
+Rather than building one large application, I'm working through several smaller projects. Each project introduces new concepts and builds on the previous one.
 
-Each project builds on the previous one, gradually moving from simple APIs toward more realistic backend systems.
+The goal isn't to simply learn how to make an API work.
+
+It's to understand **why it works, what happens when it breaks, and how to build it better.**
 
 ---
 
-## 🧠 The Backend
+## 🧠 What I'm Learning
 
-Backend development is more than simply writing code that runs behind a website.
+Throughout these projects, I'll be exploring:
 
-It involves thinking about how applications:
+* HTTP and REST APIs
+* FastAPI
+* Request and response handling
+* Pydantic and data validation
+* CRUD operations
+* Error handling and status codes
+* SQL and PostgreSQL
+* SQLAlchemy and ORM concepts
+* Database design
+* Relationships, foreign keys, and joins
+* API design
+* Testing
+* Code organization
+* Debugging and problem solving
 
-* Receive and process requests
-* Return useful responses
-* Manage and validate data
-* Communicate with databases
-* Handle errors
-* Organize application logic
-* Provide functionality through APIs
-
-This repository is a space to explore those ideas through actual implementations rather than theory alone.
+The technologies will change and become more complex as the projects progress, but the focus remains on understanding the **backend concepts behind them**.
 
 ---
 
 ## 🔨 Learning By Building
 
-Each project in this repository focuses on a particular backend problem.
-
-The general process looks something like this:
+My general approach is:
 
 ```text
 Understand the problem
         ↓
-Define the API
+Think about the data
         ↓
-Design the data
+Design the API
         ↓
-Build the endpoints
+Build it
         ↓
-Test different requests
+Test it
         ↓
-Handle errors and edge cases
+Break it
         ↓
-Improve the implementation
+Figure out why
+        ↓
+Fix it
+        ↓
+Improve it
 ```
 
-The intention is to understand what is happening behind each request rather than simply making an endpoint work.
+I'm intentionally learning through implementation rather than trying to memorize concepts in isolation.
 
 ---
 
@@ -69,95 +80,85 @@ The intention is to understand what is happening behind each request rather than
 
 ### `01-hello-api`
 
-A small introduction to building an API with FastAPI.
+A small introduction to FastAPI, HTTP requests, responses, and API endpoints.
 
 ### `02-game-catalog-api`
 
-A game catalog API used to explore CRUD operations and different ways an API can receive and return data.
+A game catalog API used to explore CRUD operations, request data, response data, validation, parameters, and error handling.
 
 ### `03-student-directory-api`
 
-A database-backed API built around a student directory.
+A database-backed API introducing PostgreSQL and SQLAlchemy, while connecting database operations to FastAPI.
 
 ### `04-book-api`
 
-A book API focused on working with related data and a more structured database.
+A relational database project focused on relationships, foreign keys, and working with related resources.
 
 ### `05-food-delivery-api`
 
-A more realistic backend involving multiple related resources and a more complex data structure.
+A more realistic backend involving multiple resources, relationships, and increasingly complex database and API logic.
+
+---
+
+## 📈 The Progression
+
+The projects are designed to gradually move from:
+
+```text
+Simple API
+    ↓
+REST + CRUD
+    ↓
+Persistent Database
+    ↓
+SQLAlchemy + PostgreSQL
+    ↓
+Relationships + Joins
+    ↓
+More Complex Backend Systems
+```
+
+The intention is to build a strong foundation before moving into more advanced backend engineering.
 
 ---
 
 ## 🧪 Experimentation & Problem Solving
 
-Backend systems rarely behave perfectly all the time.
+Not everything here is going to work perfectly.
 
-A request can contain invalid data.
+I'll be experimenting with different approaches, encountering bugs, investigating unexpected behaviour, and learning from mistakes along the way.
 
-A resource might not exist.
+A working solution isn't always the best solution.
 
-A database operation might fail.
+So I'll also be paying attention to:
 
-An endpoint might not behave the way it was expected to.
-
-Because of this, the projects in this repository also provide opportunities to experiment with different scenarios, investigate unexpected behaviour, and improve how the API responds.
-
-The goal isn't simply to make an API work.
-
-It's to understand **why it works, what happens when it doesn't, and how it can be made better**.
-
----
-
-## 📈 From Simple APIs to Real Systems
-
-The projects in this repository start small on purpose.
-
-A simple endpoint can introduce questions that become increasingly important as an application grows:
-
-> How should the data be structured?
-
-> Where should the data actually live?
-
-> How should different resources relate to each other?
-
-> What should happen when something goes wrong?
-
-> How should the application be organized?
-
-> What makes an API reliable and maintainable?
-
-Each project provides another opportunity to explore those questions.
-
----
-
-## 🔄 Building Better Backends
-
-A working API is not necessarily a finished API.
-
-As the projects become more complex, there are always opportunities to improve:
-
-* The structure of the application
-* The way data is handled
-* API design
-* Error handling
-* Database interactions
-* Validation
-* Testing
-* Code organization
-
-The idea is to gradually move from simply **making things work** toward building backend systems that are thoughtful, reliable, and maintainable.
+* Why a solution works
+* Why it fails
+* How data moves through the application
+* How different components interact
+* What could be improved
+* What trade-offs different approaches have
 
 ---
 
 ## 🎯 The Goal
 
-The goal of this repository is to build a strong foundation in **backend development with Python** by actually building backend systems.
+The goal of this repository is to become comfortable taking a problem and thinking through the backend behind it:
 
-I want to become comfortable taking a problem, thinking about the data and API behind it, and turning that into a working backend.
+> **What data do I need?**
+
+> **How should that data be stored?**
+
+> **How should clients interact with it?**
+
+> **What should happen when something goes wrong?**
+
+> **How should the application be structured?**
+
+Eventually, I want to be able to answer those questions myself and build the backend without needing a step-by-step tutorial.
 
 Because apparently, making computers deal with all the complicated stuff behind the scenes is my kind of fun. 😌
 
-> **Understand the problem. Build the API. Break it. Fix it. Make it better.**
+> **Understand the problem. Build the backend. Break it. Fix it. Understand it better.**
 
 ⚙️🐍💻🚀
